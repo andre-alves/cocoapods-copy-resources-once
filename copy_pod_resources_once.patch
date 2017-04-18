@@ -1,0 +1,13 @@
+5a6,17
+> LOCK_CHECKSUM=`cat "${SRCROOT}/Podfile.lock" | grep "PODFILE CHECKSUM:" | cut -d' ' -f3-`
+> APP_BUILD_DIR="${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
+> NONCE_FILE="${APP_BUILD_DIR}/cocoapods-copied-resources.nonce"
+> create_nonce_file() { echo "$LOCK_CHECKSUM" > "${NONCE_FILE}"; }
+> if [ -f "${NONCE_FILE}" ] && [ "$LOCK_CHECKSUM" == `cat "${NONCE_FILE}"` ]; then
+>    XCASSETS_CARS=$(find "${APP_BUILD_DIR}" -iname "*.car" -newer "${NONCE_FILE}" -type f)
+>    if [ -z "$XCASSETS_CARS" ]; then
+>        echo "Already copied resources. Once file path: ${NONCE_FILE}"
+>        exit 0
+>    fi
+> fi
+> 
