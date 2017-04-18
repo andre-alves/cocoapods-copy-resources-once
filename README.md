@@ -1,0 +1,1 @@
+# cocoapods-copy-resources-once
