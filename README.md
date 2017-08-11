@@ -4,7 +4,7 @@ The build phase for copying resources from pods can be very slow if your project
 
 This patch attempts to improve the build phase by running it only when needed and not in every build.
 
-*Tested with cocoapods 1.2.0*
+*Tested with cocoapods 1.2.0 and 1.3.1*
 
 ## Installation
 
